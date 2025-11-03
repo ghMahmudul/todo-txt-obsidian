@@ -2,6 +2,8 @@
 
 > Powerful yet simple task management for [Obsidian](https://obsidian.md/) in the portable [Todo.txt](http://todotxt.org/) format, with smart filtering and a modern interface.
 
+<img width="3944" height="3240" alt="Screenshot" src="https://github.com/user-attachments/assets/455c8f0d-6f90-4d7a-a103-a00becab29af" />
+
 ## ✨ Features
 
 ### 📋 **Smart Task Management**
