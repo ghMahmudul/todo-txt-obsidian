@@ -30,7 +30,7 @@ export class DeleteTaskModal extends Modal {
 
         // Build confirmation message
         messageEl.appendText('The "');
-        const boldEl = messageEl.createEl('span', {
+        messageEl.createEl('span', {
             text: cleanTaskDescription,
             cls: 'todo-delete-highlight'
         });
@@ -78,7 +78,7 @@ export class DeleteProjectModal extends Modal {
         const messageEl = contentEl.createEl('p');
         // Build warning message
         messageEl.appendText('The "');
-        const boldEl = messageEl.createEl('span', {
+        messageEl.createEl('span', {
             text: this.projectName.replace(/_/g, ' '),
             cls: 'todo-delete-highlight'
         });

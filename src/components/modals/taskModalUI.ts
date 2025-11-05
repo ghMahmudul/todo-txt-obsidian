@@ -1,4 +1,3 @@
-import { TodoItem } from '../../types';
 import { TaskDataHandler } from './taskDataHandler';
 import { TaskModalElements } from './taskModalElements';
 

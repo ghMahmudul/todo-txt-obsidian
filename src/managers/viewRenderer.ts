@@ -9,7 +9,6 @@ import { ProjectsSidebar } from '../components/ui/projectsSidebar';
 import { ResponsiveManager, Breakpoint } from '../utils/responsiveManager';
 import { TFile } from 'obsidian';
 import TodoTxtPlugin from '../main';
-import { App } from 'obsidian';
 
 export class ViewRenderer {
     // UI component renderers
@@ -169,14 +168,14 @@ export class ViewRenderer {
     }
 
     // Toggle sidebar visibility
-    private async toggleSidebar(): Promise<void> {
+    private toggleSidebar(): void {
         this.sidebarOpen = !this.sidebarOpen;
         this.updateSidebarState();
 
         // Save state only on desktop
         if (this.responsiveManager.getCurrentBreakpoint() === 'desktop') {
             this.plugin.settings.sidebarCollapsed = !this.sidebarOpen;
-            await this.plugin.saveSettings();
+            void this.plugin.saveSettings();
         }
     }
 
@@ -227,7 +226,7 @@ export class ViewRenderer {
 
         // Header title
         const headerText = this.getHeaderText(filterState);
-        const headerEl = headerContainer.createDiv({
+        headerContainer.createDiv({
             text: headerText,
             cls: filterState.selectedProject ? 'todo-section-title project-header' : 'todo-section-title all-tasks-header'
         });

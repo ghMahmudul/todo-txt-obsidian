@@ -7,12 +7,12 @@ export class TaskManager {
     private todoItems: TodoItem[] = [];
 
     // Task operation callbacks
-    public onTaskComplete: (item: TodoItem) => Promise<void> = async () => { };
-    public onTaskUncomplete: (item: TodoItem) => Promise<void> = async () => { };
-    public onTaskUpdate: (item: TodoItem, taskLine: string) => Promise<void> = async () => { };
-    public onTaskDelete: (item: TodoItem) => Promise<void> = async () => { };
-    public onTaskAdd: (taskLine: string) => Promise<void> = async () => { };
-    public onMoveFromArchived: (item: TodoItem) => Promise<void> = async () => { };
+    public onTaskComplete: (item: TodoItem) => Promise<void> = () => Promise.resolve();
+    public onTaskUncomplete: (item: TodoItem) => Promise<void> = () => Promise.resolve();
+    public onTaskUpdate: (item: TodoItem, taskLine: string) => Promise<void> = () => Promise.resolve();
+    public onTaskDelete: (item: TodoItem) => Promise<void> = () => Promise.resolve();
+    public onTaskAdd: (taskLine: string) => Promise<void> = () => Promise.resolve();
+    public onMoveFromArchived: (item: TodoItem) => Promise<void> = () => Promise.resolve();
 
     constructor(private app: App) { }
 
@@ -70,8 +70,8 @@ export class TaskManager {
     ): void {
         const modal = new AddTaskModal(
             this.app,
-            (taskLine: string) => {
-                this.onTaskAdd(taskLine);
+            async (taskLine: string) => {
+                await this.onTaskAdd(taskLine);
             },
             availableProjects,
             availableContexts,

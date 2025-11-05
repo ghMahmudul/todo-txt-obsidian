@@ -84,13 +84,14 @@ export function calculateDueDate(option: string): string {
             targetDate = new Date(today);
             targetDate.setDate(targetDate.getDate() + 1);
             break;
-        case 'Next Week':
+        case 'Next Week': {
             targetDate = new Date(today);
             const dayOfWeek = targetDate.getDay();
             // Find next Sunday
             const daysUntilSunday = dayOfWeek === 0 ? 7 : 7 - dayOfWeek;
             targetDate.setDate(targetDate.getDate() + daysUntilSunday);
             break;
+        }
         case 'Next Month':
             targetDate = new Date(today);
             // Go to next month

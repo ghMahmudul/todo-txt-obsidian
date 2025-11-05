@@ -132,7 +132,7 @@ export class SuggestionManager {
 
                 // Non-blocking context update
                 if (this.onProjectChange) {
-                    this.onProjectChange(project);
+                    void this.onProjectChange(project);
                 }
 
                 input.setSelectionRange(symbolPosition, symbolPosition);

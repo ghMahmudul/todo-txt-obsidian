@@ -133,7 +133,7 @@ export class TaskContentRenderer {
     private openWikiLink(linkText: string): void {
         const file = this.app.metadataCache.getFirstLinkpathDest(linkText, '');
         if (file) {
-            this.app.workspace.getLeaf(false).openFile(file);
+            void this.app.workspace.getLeaf(false).openFile(file);
         }
     }
 

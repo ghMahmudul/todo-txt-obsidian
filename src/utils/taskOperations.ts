@@ -94,7 +94,7 @@ export class TaskOperations {
             });
 
             return Array.from(projects).sort();
-        } catch (error) {
+        } catch {
             // Fallback to stored projects
             if (this.settings.allKnownProjects && this.settings.allKnownProjects[file.path]) {
                 return this.settings.allKnownProjects[file.path]
@@ -126,7 +126,7 @@ export class TaskOperations {
             });
 
             return Array.from(contexts).sort();
-        } catch (error) {
+        } catch {
             return [];
         }
     }

@@ -1,4 +1,4 @@
-import { App, Plugin, TFile, WorkspaceLeaf } from 'obsidian';
+import { Plugin, TFile, WorkspaceLeaf } from 'obsidian';
 import { TodoTxtSettings, DEFAULT_SETTINGS, VIEW_TYPE_TODO_TXT } from './types';
 import { TodoTxtSettingTab } from './settings';
 import { TodoTxtView } from './view';
@@ -84,7 +84,9 @@ export default class TodoTxtPlugin extends Plugin {
 
                 if (!this.app.vault.getAbstractFileByPath(todoPath)) {
                     const newFile = await this.app.vault.create(todoPath, '');
-                    await this.openTodoTxtView(newFile as TFile);
+                    if (newFile instanceof TFile) {
+                        await this.openTodoTxtView(newFile);
+                    }
                     return;
                 }
 
@@ -97,7 +99,9 @@ export default class TodoTxtPlugin extends Plugin {
                 }
 
                 const newFile = await this.app.vault.create(newPath, '');
-                await this.openTodoTxtView(newFile as TFile);
+                if (newFile instanceof TFile) {
+                    await this.openTodoTxtView(newFile);
+                }
             }
         });
 
@@ -165,8 +169,8 @@ export default class TodoTxtPlugin extends Plugin {
         const availableProjects = await this.taskOps.getAvailableProjectsFromFile(defaultFile);
         const availableContexts = await this.taskOps.getAvailableContextsFromFile(defaultFile);
 
-        const modal = new AddTaskModal(this.app, async (taskLine: string) => {
-            await this.addTaskToDefaultFile(taskLine);
+        const modal = new AddTaskModal(this.app, (taskLine: string) => {
+            void this.addTaskToDefaultFile(taskLine);
         }, availableProjects, availableContexts);
         modal.open();
     }
@@ -277,7 +281,7 @@ export default class TodoTxtPlugin extends Plugin {
         if (leaf.view instanceof TodoTxtView) {
             const view = leaf.view;
             window.setTimeout(() => {
-                view.setFilter(this.settings.startupFilter);
+                void view.setFilter(this.settings.startupFilter);
             }, 100);
         }
     }

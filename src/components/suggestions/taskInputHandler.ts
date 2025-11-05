@@ -118,7 +118,7 @@ export class TaskInputHandler {
                         '/': this.suggestionManager.mainMenuHandler
                     };
 
-                    const handler = handlerMap[e.key] as SuggestionHandler | MenuSuggestions;
+                    const handler = handlerMap[e.key];
                     const symbolPosition = value.lastIndexOf(e.key, cursorPosition - 1);
 
                     // Show suggestions for this symbol

@@ -123,7 +123,7 @@ export class AddTaskModal extends Modal {
             });
 
             return Array.from(contextsSet).sort();
-        } catch (error) {
+        } catch {
             return this.dataHandler.availableContexts;
         }
     }

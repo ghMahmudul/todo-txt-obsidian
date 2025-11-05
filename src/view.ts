@@ -88,9 +88,10 @@ export class TodoTxtView extends TextFileView {
 		};
 
 		// Project operation handlers
-		this.projectManager.onProjectCreate = async (projectName, icon) => {
-			await this.projectService.createEmptyProject(this.file, projectName);
-			this.refresh();
+		this.projectManager.onProjectCreate = (projectName, icon) => {
+			return this.projectService.createEmptyProject(this.file, projectName).then(() => {
+				this.refresh();
+			});
 		};
 
 		this.projectManager.onProjectUpdate = async (oldName, newName, icon) => {
@@ -202,6 +203,7 @@ export class TodoTxtView extends TextFileView {
 	async onOpen(): Promise<void> {
 		this.contentEl.empty();
 		this.contentEl.addClass('todo-txt-view');
+		await Promise.resolve();
 		this.render();
 	}
 
@@ -315,7 +317,8 @@ export class TodoTxtView extends TextFileView {
 		try {
 			const defaultFile = await this.plugin.getDefaultTodoFile();
 			await this.leaf.openFile(defaultFile);
-		} catch (error) {
+		} catch {
+			// Failed to load default file
 		}
 	}
 }

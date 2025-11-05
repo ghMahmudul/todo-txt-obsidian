@@ -137,7 +137,7 @@ export class AddProjectModal extends Modal {
         if (this.isEditMode) {
             // Only update if changed
             if (formattedProjectName !== this.originalProjectName || iconValue !== this.originalProjectIcon) {
-                await (this.onSubmit as (oldName: string, newName: string, icon?: string) => Promise<void>)(
+                void (this.onSubmit as (oldName: string, newName: string, icon?: string) => Promise<void>)(
                     this.originalProjectName,
                     formattedProjectName,
                     iconValue

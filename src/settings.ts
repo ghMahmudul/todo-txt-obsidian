@@ -1,5 +1,5 @@
 import { App, PluginSettingTab, Setting } from 'obsidian';
-import { TodoTxtSettings, DEFAULT_SETTINGS } from './types';
+import { DEFAULT_SETTINGS } from './types';
 import TodoTxtPlugin from './main';
 
 export class TodoTxtSettingTab extends PluginSettingTab {
@@ -43,7 +43,7 @@ export class TodoTxtSettingTab extends PluginSettingTab {
         // Auto-open toggle
         new Setting(containerEl)
             .setName('Open on startup')
-            .setDesc('Automatically open Todo.txt when Obsidian starts')
+            .setDesc('Automatically open plugin on startup')
             .addToggle(toggle => toggle
                 .setValue(this.plugin.settings.openOnStartup)
                 .onChange(async (value) => {

@@ -1,4 +1,4 @@
-import { App, TFile } from 'obsidian';
+import { TFile } from 'obsidian';
 import { TodoItem } from '../types';
 import { AddProjectModal } from '../components/modals/addProjectModal';
 import { DeleteProjectModal } from '../components/modals/confirmModals';
@@ -209,8 +209,8 @@ export class ProjectManager {
             text: isPinned ? 'Unpin' : 'Pin',
             cls: 'project-context-menu-item'
         });
-        pinOption.addEventListener('click', async () => {
-            await this.onProjectPin(projectName, !isPinned);
+        pinOption.addEventListener('click', () => {
+            void this.onProjectPin(projectName, !isPinned);
             menu.remove();
         });
 

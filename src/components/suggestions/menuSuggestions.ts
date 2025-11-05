@@ -186,7 +186,7 @@ export class MenuSuggestions extends SuggestionHandler {
 
         // Non-blocking context update
         if (this.onProjectChange) {
-            this.onProjectChange(option);
+            void this.onProjectChange(option);
         }
 
         input.setSelectionRange(symbolPosition, symbolPosition);

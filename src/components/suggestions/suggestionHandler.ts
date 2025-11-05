@@ -99,7 +99,6 @@ export class SuggestionHandler {
         document.body.appendChild(this.suggestions);
 
         // Check viewport overflow and adjust position
-        const suggestionRect = this.suggestions.getBoundingClientRect();
         let finalTop = rect.top + cursorCoords.top + cursorCoords.height + 5;
         let finalLeft = rect.left + cursorCoords.left;
 

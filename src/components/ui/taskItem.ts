@@ -69,17 +69,17 @@ export class TaskItem {
         }
 
         // Toggle task state on checkbox change
-        checkbox.addEventListener('change', async (event) => {
+        checkbox.addEventListener('change', (event) => {
             const isChecked = (event.target as HTMLInputElement).checked;
             if (item.projects.includes('Archived')) {
                 if (!isChecked) {
-                    await this.taskManager.moveTaskFromArchived(item);
+                    void this.taskManager.moveTaskFromArchived(item);
                 }
             } else {
                 if (isChecked) {
-                    await this.taskManager.completeTask(item);
+                    void this.taskManager.completeTask(item);
                 } else {
-                    await this.taskManager.uncompleteTask(item);
+                    void this.taskManager.uncompleteTask(item);
                 }
             }
         });

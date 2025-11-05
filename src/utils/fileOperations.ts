@@ -22,7 +22,7 @@ export class FileOperations {
             if (folderPath && folderPath !== path) {
                 try {
                     await this.createFolderRecursive(folderPath);
-                } catch (error) {
+                } catch {
                     // Folder might already exist, continue
                 }
             }
