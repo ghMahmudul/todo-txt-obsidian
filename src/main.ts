@@ -35,14 +35,14 @@ export default class TodoTxtPlugin extends Plugin {
 
         // Add ribbon icon
         this.addRibbonIcon('circle-check-big', 'Open task', () => {
-            this.activateView();
+            void this.activateView();
         });
 
         // Open todo command
         this.addCommand({
             id: 'open-task',
             name: 'Open task',
-            callback: () => this.activateView()
+            callback: () => void this.activateView()
         });
 
         // Add task command
@@ -55,7 +55,7 @@ export default class TodoTxtPlugin extends Plugin {
                 if (activeLeaf && activeLeaf instanceof TodoTxtView) {
                     activeLeaf.openAddTaskModal();
                 } else {
-                    this.openAddTaskModal();
+                    void this.openAddTaskModal();
                 }
             }
         });
@@ -108,7 +108,7 @@ export default class TodoTxtPlugin extends Plugin {
         // Auto-open on startup
         if (this.settings.openOnStartup) {
             window.setTimeout(() => {
-                this.activateView();
+                void this.activateView();
             }, 1000);
         }
 
@@ -265,7 +265,7 @@ export default class TodoTxtPlugin extends Plugin {
 
         if (leaf) {
             // View exists, just reveal and focus it
-            workspace.revealLeaf(leaf);
+            void workspace.revealLeaf(leaf);
         } else {
             // Create new view
             leaf = workspace.getLeaf(true);

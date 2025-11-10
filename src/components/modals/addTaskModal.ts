@@ -158,11 +158,12 @@ export class AddTaskModal extends Modal {
         });
 
         // Handle project selection
-        this.ui.onProjectChange(async (project: string) => {
+        this.ui.onProjectChange((project: string) => {
             this.dataHandler.selectedProject = project;
-            const projectContexts = await this.getContextsForProject(project);
-            this.dataHandler.updateAvailableContexts(projectContexts);
-            this.suggestionManager.updateContextItems(projectContexts);
+            void this.getContextsForProject(project).then(projectContexts => {
+                this.dataHandler.updateAvailableContexts(projectContexts);
+                this.suggestionManager.updateContextItems(projectContexts);
+            });
         });
 
         // Handle priority changes

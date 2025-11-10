@@ -40,13 +40,13 @@ export class TaskManager {
     editTask(item: TodoItem, availableProjects: string[], availableContexts: string[]): void {
         const modal = new AddTaskModal(
             this.app,
-            async (taskLine: string) => {
-                await this.onTaskUpdate(item, taskLine);
+            (taskLine: string) => {
+                void this.onTaskUpdate(item, taskLine);
             },
             availableProjects,
             availableContexts,
             item,
-            async () => {
+            () => {
                 // Show delete confirmation
                 const confirmModal = new DeleteTaskModal(
                     this.app,
@@ -70,8 +70,8 @@ export class TaskManager {
     ): void {
         const modal = new AddTaskModal(
             this.app,
-            async (taskLine: string) => {
-                await this.onTaskAdd(taskLine);
+            (taskLine: string) => {
+                void this.onTaskAdd(taskLine);
             },
             availableProjects,
             availableContexts,

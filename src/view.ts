@@ -55,7 +55,7 @@ export class TodoTxtView extends TextFileView {
 		// Watch file changes
 		this.registerEvent(this.app.vault.on('modify', (file) => {
 			if (file === this.file) {
-				this.loadFileContent();
+				void this.loadFileContent();
 			}
 		}));
 	}
@@ -154,20 +154,20 @@ export class TodoTxtView extends TextFileView {
 			this.filterManager.setSpecialFilter(filter);
 		};
 
-		this.renderer.onProjectReorder = async (projectName, newIndex, isPinned) => {
+		this.renderer.onProjectReorder = (projectName, newIndex, isPinned) => {
 			this.projectManager.reorderProject(projectName, newIndex, isPinned);
 
 			if (isPinned) {
-				await this.projectManager.savePinnedProjects(this.file);
+				void this.projectManager.savePinnedProjects(this.file);
 			} else {
-				await this.projectManager.saveAllKnownProjects(this.file);
+				void this.projectManager.saveAllKnownProjects(this.file);
 			}
 
 			this.refresh();
 		};
 
-		this.renderer.onProjectTogglePin = async (projectName, shouldPin) => {
-			await this.projectManager.onProjectPin(projectName, shouldPin);
+		this.renderer.onProjectTogglePin = (projectName, shouldPin) => {
+			void this.projectManager.onProjectPin(projectName, shouldPin);
 		};
 	}
 
@@ -183,7 +183,7 @@ export class TodoTxtView extends TextFileView {
 		return this.data || '';
 	}
 
-	async setViewData(data: string, clear: boolean): Promise<void> {
+	setViewData(data: string, clear: boolean): void {
 		this.data = data;
 
 		if (clear) {
@@ -191,7 +191,7 @@ export class TodoTxtView extends TextFileView {
 		}
 
 		this.todoItems = TodoParser.parseTodoTxt(data);
-		await this.updateManagers();
+		void this.updateManagers();
 		this.refresh();
 	}
 
@@ -277,7 +277,7 @@ export class TodoTxtView extends TextFileView {
 	async loadFileContent(): Promise<void> {
 		if (this.file) {
 			const content = await this.fileService.readFile(this.file);
-			this.setViewData(content, true);
+			void this.setViewData(content, true);
 		}
 	}
 

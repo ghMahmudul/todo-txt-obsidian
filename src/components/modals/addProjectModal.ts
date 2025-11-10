@@ -67,7 +67,7 @@ export class AddProjectModal extends Modal {
             .setName('Name')
             .addText(text => {
                 this.inputEl = text.inputEl;
-                text.setPlaceholder('My Project')
+                text.setPlaceholder('My project')
                     .setValue(this.projectName)
                     .onChange(value => {
                         this.projectName = value;
@@ -77,7 +77,7 @@ export class AddProjectModal extends Modal {
                 text.inputEl.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter') {
                         e.preventDefault();
-                        this.submit();
+                        void this.submit();
                     }
                 });
             });
@@ -97,7 +97,7 @@ export class AddProjectModal extends Modal {
                 text.inputEl.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter') {
                         e.preventDefault();
-                        this.submit();
+                        void this.submit();
                     }
                 });
             });
@@ -112,7 +112,7 @@ export class AddProjectModal extends Modal {
                 .setButtonText(this.isEditMode ? 'Update' : 'Add')
                 .setCta()
                 .setClass('add-button')
-                .onClick(() => this.submit()));
+                .onClick(() => void this.submit()));
 
         // Focus name input
         window.setTimeout(() => {
@@ -126,7 +126,7 @@ export class AddProjectModal extends Modal {
     }
 
     // Submit form data
-    private async submit() {
+    private submit() {
         const trimmedName = this.projectName.trim();
         if (!trimmedName) return;
 

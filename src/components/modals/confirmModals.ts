@@ -133,7 +133,7 @@ export class DeleteAllCompletedTasksModal extends Modal {
                 .onClick(() => this.close())
             )
             .addButton(btn => btn
-                .setButtonText('Delete All')
+                .setButtonText('Delete all')
                 .setWarning()
                 .onClick(async () => {
                     await this.onConfirm();
