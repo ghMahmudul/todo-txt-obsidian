@@ -24,7 +24,7 @@ export class TaskControls {
         this.completedFilter = completedFilter;
         const controlsContainer = container.createDiv('todo-controls');
 
-        const searchWrapper = controlsContainer.createDiv('search-sort-wrapper');
+        const searchWrapper = controlsContainer.createDiv('todo-txt-search-sort-wrapper');
 
         this.renderSearchInput(searchWrapper, searchQuery);
         this.renderSortToggle(searchWrapper);
@@ -101,7 +101,7 @@ export class TaskControls {
 
     // Render sort options toggle button
     private renderSortToggle(container: HTMLElement): void {
-        const sortToggleBtn = container.createDiv('sort-toggle-btn');
+        const sortToggleBtn = container.createDiv('todo-txt-sort-toggle-btn');
         const sortSvg = createSVGElement(Icons.sort);
         sortToggleBtn.appendChild(sortSvg);
         sortToggleBtn.setAttribute('title', 'Sort options');
@@ -118,10 +118,10 @@ export class TaskControls {
 
     // Render sort dropdown menu
     private renderSortDropdown(container: HTMLElement, sortOption: string, completedFilter: boolean): void {
-        const sortContainer = container.createDiv('sort-container');
-        sortContainer.createSpan('sort-label').setText('Sort by:');
+        const sortContainer = container.createDiv('todo-txt-sort-container');
+        sortContainer.createSpan('todo-txt-sort-label').setText('Sort by:');
 
-        const sortSelect = sortContainer.createEl('select', { cls: 'sort-select' });
+        const sortSelect = sortContainer.createEl('select', { cls: 'todo-txt-sort-select' });
 
         // Base sort options
         const sortOptions = [
@@ -156,10 +156,10 @@ export class TaskControls {
 
     // Render context filter dropdown
     private renderContextFilter(container: HTMLElement, contextFilter: string): void {
-        const contextContainer = container.createDiv('context-filter-container');
-        contextContainer.createSpan('context-filter-label').setText('Context:');
+        const contextContainer = container.createDiv('todo-txt-context-filter-container');
+        contextContainer.createSpan('todo-txt-context-filter-label').setText('Context:');
 
-        const contextSelect = contextContainer.createEl('select', { cls: 'context-filter-select' });
+        const contextSelect = contextContainer.createEl('select', { cls: 'todo-txt-context-filter-select' });
         this.contextFilterEl = contextSelect;
 
         // All contexts option

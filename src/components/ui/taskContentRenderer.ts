@@ -66,7 +66,7 @@ export class TaskContentRenderer {
 
             // Create WikiLink element
             const linkText = match[1];
-            const linkEl = container.createSpan('wiki-link');
+            const linkEl = container.createSpan('todo-txt-wiki-link');
             linkEl.setText(linkText);
             linkEl.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -92,7 +92,7 @@ export class TaskContentRenderer {
                 return;
             } else if (part.startsWith('@') && part.match(/^@\S+/)) {
                 // Context tag
-                const contextEl = container.createSpan('context-tag');
+                const contextEl = container.createSpan('todo-txt-context-tag');
                 contextEl.setText(part.substring(1));
             } else if (part.startsWith('#')) {
                 // Clickable hashtag
@@ -150,7 +150,7 @@ export class TaskContentRenderer {
 
             // Create WikiLink element
             const linkText = match[1];
-            const linkEl = container.createSpan('wiki-link');
+            const linkEl = container.createSpan('todo-txt-wiki-link');
             linkEl.setText(linkText);
             linkEl.addEventListener('click', (e) => {
                 e.stopPropagation();

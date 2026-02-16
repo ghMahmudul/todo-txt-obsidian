@@ -214,10 +214,10 @@ export class ViewRenderer {
         const tasksSection = container.createDiv('todo-section');
         const stickyHeader = tasksSection.createDiv('todo-header-sticky');
 
-        const headerContainer = stickyHeader.createDiv('header-title-container');
+        const headerContainer = stickyHeader.createDiv('todo-txt-header-title-container');
 
         // Menu button
-        const menuBtn = headerContainer.createDiv('menu-btn');
+        const menuBtn = headerContainer.createDiv('todo-txt-menu-btn');
         const menuSvg = createSVGElement(Icons.menu);
         menuBtn.appendChild(menuSvg);
         menuBtn.addEventListener('click', () => {

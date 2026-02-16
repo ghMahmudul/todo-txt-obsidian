@@ -83,9 +83,9 @@ export class ProjectsSidebar {
 
         // Render pinned projects section
         if (pinnedProjectCounts.length > 0) {
-            const pinnedHeaderContainer = sidebar.createDiv('pinned-header-container');
+            const pinnedHeaderContainer = sidebar.createDiv('todo-txt-pinned-header-container');
             const pinnedHeading = pinnedHeaderContainer.createDiv();
-            pinnedHeading.addClass('pinned-header-text');
+            pinnedHeading.addClass('todo-txt-pinned-header-text');
             pinnedHeading.setText('Pinned');
 
             const pinnedList = sidebar.createDiv('projects-list pinned-projects-list');
@@ -135,18 +135,18 @@ export class ProjectsSidebar {
 
             if (draggedFromPinned !== isPinnedSection) {
                 e.preventDefault();
-                container.addClass('section-highlight');
+                container.addClass('todo-txt-section-highlight');
             }
         });
 
         container.addEventListener('dragleave', (e) => {
             if (!container.contains(e.relatedTarget as Node)) {
-                container.removeClass('section-highlight');
+                container.removeClass('todo-txt-section-highlight');
             }
         });
 
         container.addEventListener('drop', () => {
-            container.removeClass('section-highlight');
+            container.removeClass('todo-txt-section-highlight');
         });
     }
 

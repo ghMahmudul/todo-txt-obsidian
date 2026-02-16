@@ -3,7 +3,7 @@
 ***/
 
 .todo-txt-view {
-    padding: 0 20px 20px !important;
+    /* padding: 0 20px 20px !important; */
     height: 100%;
     overflow-y: auto;
     display: flex;
@@ -12,7 +12,7 @@
 }
 
 .todo-txt-view.mobile {
-    padding: 10px 15px !important;
+    padding: 35px 15px;
 }
 
 .todo-txt-content {
@@ -42,6 +42,10 @@
 @media (max-width: 768px) {
     .workspace-leaf-content[data-type="todo-txt-view"] .view-header {
         display: none;
+    }
+
+    .workspace-leaf-content[data-type="todo-txt-view"] {
+        --view-top-spacing: 0px;
     }
 }
 
@@ -75,7 +79,7 @@
 }
 
 .projects-header-container,
-.pinned-header-container {
+.todo-txt-pinned-header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -86,7 +90,7 @@
     transition: background-color 0.2s ease;
 }
 
-.pinned-header-text,
+.todo-txt-pinned-header-text,
 .projects-header-text {
     font-size: 15px;
     font-weight: 700;
@@ -262,6 +266,7 @@
     top: 0;
     width: 280px;
     height: 100vh;
+    padding: 45px 15px 15px 15px;
     z-index: 100;
     background-color: var(--background-secondary);
     border-radius: 0;
@@ -359,19 +364,19 @@
     z-index: 1000;
 }
 
-.drop-target-highlight {
+.todo-txt-drop-target-highlight {
     background-color: color-mix(in srgb, var(--interactive-accent) 12%, transparent);
     border-radius: 8px;
     transition: background-color 0.15s ease !important;
 }
 
-.section-highlight {
+.todo-txt-section-highlight {
     background-color: color-mix(in srgb, var(--interactive-accent) 8%, transparent);
     border-radius: 8px;
     transition: background-color 0.2s ease;
 }
 
-.mobile-drag-clone {
+.todo-txt-mobile-drag-clone {
     position: fixed;
     left: var(--drag-x, 0);
     top: var(--drag-y, 0);
@@ -439,7 +444,7 @@
 }
 
 /* Title Container */
-.header-title-container {
+.todo-txt-header-title-container {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -466,7 +471,7 @@
 }
 
 /* Menu Button */
-.menu-btn {
+.todo-txt-menu-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -477,12 +482,12 @@
     transition: all 0.2s ease;
 }
 
-.menu-btn:hover {
+.todo-txt-menu-btn:hover {
     color: var(--text-normal);
     background-color: var(--background-modifier-hover);
 }
 
-.menu-btn svg {
+.todo-txt-menu-btn svg {
     width: 22px;
     height: 22px;
 }
@@ -557,21 +562,21 @@
     Sort Dropdown
 ***/
 
-.context-filter-container,
-.sort-container {
+.todo-txt-context-filter-container,
+.todo-txt-sort-container {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.context-filter-label,
-.sort-label {
+.todo-txt-context-filter-label,
+.todo-txt-sort-label {
     font-size: 15px;
     color: var(--text-muted);
 }
 
-.context-filter-select,
-.sort-select {
+.todo-txt-context-filter-select,
+.todo-txt-sort-select {
     height: 36px !important;
     max-width: 130px !important;
     font-size: 14px;
@@ -584,13 +589,13 @@
     transition: border-color 0.1s ease;
 }
 
-.context-filter-select:hover,
-.sort-select:hover {
+.todo-txt-context-filter-select:hover,
+.todo-txt-sort-select:hover {
     border-color: color-mix(in srgb, var(--text-normal) 20%, transparent);
     background-color: var(--background-primary);
 }
 
-.search-sort-wrapper {
+.todo-txt-search-sort-wrapper {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -600,7 +605,7 @@
 }
 
 /* Mobile Adjustments */
-.sort-toggle-btn {
+.todo-txt-sort-toggle-btn {
     display: none;
     align-items: center;
     justify-content: center;
@@ -612,7 +617,7 @@
     transition: all 0.2s ease;
 }
 
-.sort-toggle-btn:hover {
+.todo-txt-sort-toggle-btn:hover {
     color: var(--text-normal);
 }
 
@@ -626,7 +631,7 @@
     background-color: var(--background-primary-alt);
 }
 
-.mobile .sort-toggle-btn {
+.mobile .todo-txt-sort-toggle-btn {
     display: flex;
 }
 
@@ -648,28 +653,28 @@
     align-items: stretch;
 }
 
-.mobile .search-sort-wrapper {
+.mobile .todo-txt-search-sort-wrapper {
     width: 100%;
     min-width: unset;
 }
 
-.mobile .search-sort-wrapper .search-container {
+.mobile .todo-txt-search-sort-wrapper .search-container {
     flex: 1;
 }
 
-.mobile .sort-container,
-.mobile .context-filter-container {
+.mobile .todo-txt-sort-container,
+.mobile .todo-txt-context-filter-container {
     width: 100%;
     white-space: nowrap;
 }
 
-.mobile .sort-select,
-.mobile .context-filter-select {
+.mobile .todo-txt-sort-select,
+.mobile .todo-txt-context-filter-select {
     width: 100% !important;
     max-width: unset !important;
 }
 
-.mobile .sort-select {
+.mobile .todo-txt-sort-select {
     margin-left: 4px;
 }
 
@@ -727,7 +732,7 @@
 .mobile .mobile-fab-button {
     position: fixed;
     bottom: 50px;
-    right: 30px;
+    right: 38px;
     width: 52px;
     height: 52px;
     border-radius: 15px;
@@ -815,9 +820,9 @@
 ***/
 
 :root {
-    --priority-a-color: #ff6b6b;
-    --priority-b-color: #feca57;
-    --priority-c-color: #32c5ec;
+    --todo-txt-priority-a-color: #ff6b6b;
+    --todo-txt-priority-b-color: #feca57;
+    --todo-txt-priority-c-color: #32c5ec;
 }
 
 .todo-checkbox {
@@ -835,18 +840,18 @@
 }
 
 .todo-checkbox.priority-a {
-    border: 1.9px solid var(--priority-a-color) !important;
-    background: color-mix(in srgb, var(--priority-a-color) 10%, transparent) !important;
+    border: 1.9px solid var(--todo-txt-priority-a-color) !important;
+    background: color-mix(in srgb, var(--todo-txt-priority-a-color) 10%, transparent) !important;
 }
 
 .todo-checkbox.priority-b {
-    border: 1.75px solid var(--priority-b-color) !important;
-    background: color-mix(in srgb, var(--priority-b-color) 10%, transparent) !important;
+    border: 1.75px solid var(--todo-txt-priority-b-color) !important;
+    background: color-mix(in srgb, var(--todo-txt-priority-b-color) 10%, transparent) !important;
 }
 
 .todo-checkbox.priority-c {
-    border: 1.6px solid var(--priority-c-color) !important;
-    background: color-mix(in srgb, var(--priority-c-color) 10%, transparent) !important;
+    border: 1.6px solid var(--todo-txt-priority-c-color) !important;
+    background: color-mix(in srgb, var(--todo-txt-priority-c-color) 10%, transparent) !important;
 }
 
 .todo-checkbox:checked {
@@ -855,18 +860,18 @@
 }
 
 .todo-checkbox.priority-a:checked {
-    border-color: var(--priority-a-color) !important;
-    background: var(--priority-a-color) !important;
+    border-color: var(--todo-txt-priority-a-color) !important;
+    background: var(--todo-txt-priority-a-color) !important;
 }
 
 .todo-checkbox.priority-b:checked {
-    border-color: var(--priority-b-color) !important;
-    background: var(--priority-b-color) !important;
+    border-color: var(--todo-txt-priority-b-color) !important;
+    background: var(--todo-txt-priority-b-color) !important;
 }
 
 .todo-checkbox.priority-c:checked {
-    border-color: var(--priority-c-color) !important;
-    background: var(--priority-c-color) !important;
+    border-color: var(--todo-txt-priority-c-color) !important;
+    background: var(--todo-txt-priority-c-color) !important;
 }
 
 /* Completed task tick icon */
@@ -935,7 +940,7 @@
 }
 
 /* Context tag */
-.context-tag {
+.todo-txt-context-tag {
     color: var(--link-color-hover);
     background-color: color-mix(in srgb, var(--link-color) 25%, transparent);
     padding: 2px 6px;
@@ -947,7 +952,7 @@
 
 /* Link/Hashtag tag */
 .hashtag-tag,
-.wiki-link,
+.todo-txt-wiki-link,
 .todo-description a {
     font-weight: 500;
     text-decoration: underline;
@@ -956,7 +961,7 @@
 }
 
 .hashtag-tag:hover,
-.wiki-link:hover,
+.todo-txt-wiki-link:hover,
 .todo-description a:hover {
     color: var(--link-color-hover);
 }
@@ -1237,7 +1242,7 @@
 }
 
 /* Suggestion Container */
-.suggestion-container {
+.todo-txt-suggestion-container {
     position: fixed;
     top: var(--suggestion-top, 0);
     left: var(--suggestion-left, 0);
@@ -1252,7 +1257,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.suggestion-item {
+.todo-txt-suggestion-item {
     padding: 8px 12px;
     font-size: 14px;
     font-weight: 500;
@@ -1260,12 +1265,12 @@
     cursor: pointer;
 }
 
-.suggestion-item.selected {
+.todo-txt-suggestion-item.selected {
     background-color: var(--background-modifier-hover);
 }
 
 /* Caret Positioning */
-.textarea-mirror {
+.todo-txt-textarea-mirror {
     position: absolute;
     top: -9999px;
     left: -9999px;
@@ -1280,7 +1285,7 @@
     visibility: hidden;
 }
 
-.textarea-cursor-span {
+.todo-txt-textarea-cursor-span {
     position: relative;
 }
 
@@ -1293,12 +1298,14 @@
     .todo-task-mod .task-input-field {
         font-size: 20px;
         font-weight: 700;
+        padding: 6px 4px;
     }
 
     .todo-task-mod .task-description-field {
         font-size: 16px;
         font-weight: 500;
         max-height: 100px;
+        padding: 6px 4px;
     }
 
     .todo-task-mod button {
@@ -1317,47 +1324,12 @@
 
     .modal.todo-project-mod,
     .modal.todo-task-mod {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: auto;
-        transform: none;
         width: 100%;
         max-width: 100%;
         max-height: 85vh;
-        margin: 0;
         border: none;
-        border-radius: 10px 10px 0 0;
-        animation: slideUp 0.2s ease-in;
+        border-radius: 0px;
         overflow-y: auto;
-    }
-
-    .modal-container:has(.modal.todo-project-mod),
-    .modal-container:has(.modal.todo-task-mod) {
-        animation: fadeIn 0.2s ease-in;
-        align-items: flex-end;
-        position: relative;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(100%);
-    }
-
-    to {
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
     }
 }
 
@@ -1384,8 +1356,8 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    padding: 0 0 20px 0;
-    border-top: none;
+    padding: 0 0 20px 0 !important;
+    border-top: none !important;
 }
 
 .todo-project-mod .setting-item:nth-child(3) {
@@ -1463,7 +1435,7 @@
         margin-bottom: 0;
     }
 
-    .modal-content {
+    .todo-task-mod .modal-content {
         margin-top: 0;
     }
 

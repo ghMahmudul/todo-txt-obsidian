@@ -31,8 +31,8 @@ export class DragHandler {
 
         dragItem.addEventListener('dragend', () => {
             dragItem.removeClass('dragging');
-            document.querySelectorAll('.section-highlight').forEach(el => el.removeClass('section-highlight'));
-            document.querySelectorAll('.drop-target-highlight').forEach(el => el.removeClass('drop-target-highlight'));
+            document.querySelectorAll('.todo-txt-section-highlight').forEach(el => el.removeClass('todo-txt-section-highlight'));
+            document.querySelectorAll('.todo-txt-drop-target-highlight').forEach(el => el.removeClass('todo-txt-drop-target-highlight'));
         });
 
         dragItem.addEventListener('dragover', (e) => {
@@ -43,7 +43,7 @@ export class DragHandler {
             const draggedFromPinned = draggingElement.closest('.pinned-projects-list') !== null;
             const isPinnedContainer = container.classList.contains('pinned-projects-list');
 
-            container.querySelectorAll('.drop-target-highlight').forEach(el => el.removeClass('drop-target-highlight'));
+            container.querySelectorAll('.todo-txt-drop-target-highlight').forEach(el => el.removeClass('todo-txt-drop-target-highlight'));
 
             if (draggedFromPinned === isPinnedContainer) {
                 const rect = dragItem.getBoundingClientRect();
@@ -51,11 +51,11 @@ export class DragHandler {
                 const isAbove = e.clientY < midY;
 
                 if (isAbove) {
-                    dragItem.addClass('drop-target-highlight');
+                    dragItem.addClass('todo-txt-drop-target-highlight');
                 } else {
                     const nextItem = dragItem.nextElementSibling;
                     if (nextItem && nextItem.classList.contains('project-item')) {
-                        nextItem.addClass('drop-target-highlight');
+                        nextItem.addClass('todo-txt-drop-target-highlight');
                     }
                 }
             }
@@ -63,7 +63,7 @@ export class DragHandler {
 
         dragItem.addEventListener('drop', (e) => {
             e.preventDefault();
-            container.querySelectorAll('.drop-target-highlight').forEach(el => el.removeClass('drop-target-highlight'));
+            container.querySelectorAll('.todo-txt-drop-target-highlight').forEach(el => el.removeClass('todo-txt-drop-target-highlight'));
 
             const draggedItem = e.dataTransfer?.getData('text/plain');
             if (!draggedItem || draggedItem === itemName) return;
@@ -120,7 +120,7 @@ export class DragHandler {
 
                 // Create visual clone
                 this.dragClone = dragItem.cloneNode(true) as HTMLElement;
-                this.dragClone.addClass('mobile-drag-clone');
+                this.dragClone.addClass('todo-txt-mobile-drag-clone');
                 document.body.appendChild(this.dragClone);
 
                 e.preventDefault();
@@ -177,9 +177,9 @@ export class DragHandler {
         const targetSection = elementBelow?.closest('.projects-list, .pinned-projects-list') as HTMLElement;
 
         // Clear existing highlights
-        document.querySelectorAll('.drop-target-highlight, .section-highlight').forEach(el => {
-            el.removeClass('drop-target-highlight');
-            el.removeClass('section-highlight');
+        document.querySelectorAll('.todo-txt-drop-target-highlight, .todo-txt-section-highlight').forEach(el => {
+            el.removeClass('todo-txt-drop-target-highlight');
+            el.removeClass('todo-txt-section-highlight');
         });
 
         if (targetSection) {
@@ -188,12 +188,12 @@ export class DragHandler {
 
             // Highlight section for cross-section drag
             if (isDraggedFromPinned !== isPinnedTarget) {
-                targetSection.addClass('section-highlight');
+                targetSection.addClass('todo-txt-section-highlight');
             }
 
             // Highlight project for same-section reorder
             if (targetItem && targetItem !== dragItem && isDraggedFromPinned === isPinnedTarget) {
-                targetItem.addClass('drop-target-highlight');
+                targetItem.addClass('todo-txt-drop-target-highlight');
             }
         }
     }
@@ -214,7 +214,7 @@ export class DragHandler {
             if (isDraggedFromPinned !== isPinnedTarget) {
                 this.onTogglePin(itemName, isPinnedTarget);
             } else {
-                const highlightedElement = targetContainer.querySelector('.drop-target-highlight') as HTMLElement;
+                const highlightedElement = targetContainer.querySelector('.todo-txt-drop-target-highlight') as HTMLElement;
                 if (highlightedElement && highlightedElement.dataset.project) {
                     const projectElements = Array.from(targetContainer.querySelectorAll('.project-item'));
                     const targetIndex = projectElements.indexOf(highlightedElement);
@@ -242,9 +242,9 @@ export class DragHandler {
             this.dragClone.remove();
             this.dragClone = null;
         }
-        document.querySelectorAll('.drop-target-highlight, .section-highlight').forEach(el => {
-            el.removeClass('drop-target-highlight');
-            el.removeClass('section-highlight');
+        document.querySelectorAll('.todo-txt-drop-target-highlight, .todo-txt-section-highlight').forEach(el => {
+            el.removeClass('todo-txt-drop-target-highlight');
+            el.removeClass('todo-txt-section-highlight');
         });
     }
 

@@ -64,11 +64,15 @@ export default class TodoTxtPlugin extends Plugin {
         this.addCommand({
             id: 'add-project',
             name: 'Add project',
-            callback: () => {
+            checkCallback: (checking: boolean) => {
                 const activeView = this.app.workspace.getActiveViewOfType(TodoTxtView);
                 if (activeView) {
-                    activeView.openAddProjectModal();
+                    if (!checking) {
+                        activeView.openAddProjectModal();
+                    }
+                    return true;
                 }
+                return false;
             }
         });
 
@@ -107,9 +111,9 @@ export default class TodoTxtPlugin extends Plugin {
 
         // Auto-open on startup
         if (this.settings.openOnStartup) {
-            window.setTimeout(() => {
+            this.app.workspace.onLayoutReady(() => {
                 void this.activateView();
-            }, 1000);
+            });
         }
 
         this.addSettingTab(new TodoTxtSettingTab(this.app, this));

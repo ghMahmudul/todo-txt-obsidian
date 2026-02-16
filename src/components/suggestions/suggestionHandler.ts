@@ -54,14 +54,14 @@ export class SuggestionHandler {
         const cursorCoords = this.getTextareaCaretPosition(textarea, cursorPosition);
 
         this.suggestions = createDiv();
-        this.suggestions.className = `${this.config.type}-suggestions suggestion-container`;
+        this.suggestions.className = `${this.config.type}-suggestions todo-txt-suggestion-container`;
         this.suggestions.style.setProperty('--suggestion-top', `${rect.top + cursorCoords.top + cursorCoords.height + 5}px`);
         this.suggestions.style.setProperty('--suggestion-left', `${rect.left + cursorCoords.left}px`);
 
         // Create suggestion items
         items.forEach((item, index) => {
             const suggestionEl = createDiv();
-            suggestionEl.className = 'suggestion-item';
+            suggestionEl.className = 'todo-txt-suggestion-item';
 
             // Format display text
             if (this.config.getDisplayText) {
@@ -150,7 +150,7 @@ export class SuggestionHandler {
         const mirrorDiv = createDiv();
         const computedStyle = window.getComputedStyle(textarea);
 
-        mirrorDiv.className = 'textarea-mirror';
+        mirrorDiv.className = 'todo-txt-textarea-mirror';
 
         // Copy essential positioning properties
         mirrorDiv.style.setProperty('--mirror-width', computedStyle.width);
@@ -165,7 +165,7 @@ export class SuggestionHandler {
 
         // Add cursor marker
         const cursorSpan = createSpan();
-        cursorSpan.className = 'textarea-cursor-span';
+        cursorSpan.className = 'todo-txt-textarea-cursor-span';
         cursorSpan.textContent = '|';
         mirrorDiv.appendChild(cursorSpan);
 
@@ -188,7 +188,7 @@ export class SuggestionHandler {
     handleKeyNavigation(event: KeyboardEvent): boolean {
         if (!this.suggestions) return false;
 
-        const suggestionItems = this.suggestions.querySelectorAll('.suggestion-item');
+        const suggestionItems = this.suggestions.querySelectorAll('.todo-txt-suggestion-item');
         if (suggestionItems.length === 0) return false;
 
         switch (event.key) {
@@ -234,7 +234,7 @@ export class SuggestionHandler {
     private updateSuggestionSelection(): void {
         if (!this.suggestions) return;
 
-        const suggestionItems = this.suggestions.querySelectorAll('.suggestion-item');
+        const suggestionItems = this.suggestions.querySelectorAll('.todo-txt-suggestion-item');
         suggestionItems.forEach((suggestion, index) => {
             if (index === this.selectedSuggestionIndex) {
                 suggestion.classList.add('selected');
